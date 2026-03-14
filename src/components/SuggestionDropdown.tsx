@@ -1,0 +1,20 @@
+import type { GithubUser } from "../types";
+
+type SuggestionDropdownProps = {
+    suggestions: GithubUser[],
+    onSelect: (user: GithubUser) => void
+}
+const SuggestionDropdown = ({ suggestions, onSelect }: SuggestionDropdownProps) => {
+    return (
+            <ul className="suggestions">
+              {suggestions.slice(0, 5).map((user: GithubUser) => (
+                <li key={user.login} onClick={() => onSelect(user)}>
+                  <img src={user.avatar_url} alt={user.login} className="avatar-xs" />
+                  {user.login}
+                </li>
+              ))}
+            </ul>
+          );
+}
+ 
+export default SuggestionDropdown;
